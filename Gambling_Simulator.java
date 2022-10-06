@@ -10,9 +10,9 @@ public class Gambling_Simulator {
 
     static int newStake = STAKE;
 
-    static int[] winCountArr = new int[20];
-    static int[] looseCountArr = new int[20];
-    static String[] day = new String[20];
+    static int[] winCountArr = new int[30];
+    static int[] looseCountArr = new int[30];
+    static String[] day = new String[30];
 
     // UC2 - As a Gambler make $1 bet so either win or loose $1
 
@@ -61,12 +61,21 @@ public class Gambling_Simulator {
         }
     }
     //UC4 - After 20 days of playing every day would like to know the total amount won or lost.
+    //UC5 - changed 20 to 30days
     void monthGame () {
-        for (int day = 0; day < 20; day++) {
+        for (int day = 0; day < 30; day++) {
             System.out.println("Day " + (day + 1) + " Game starts!");// Beginning of the game
             winLoose(day);
             System.out.println("Game Ends for today!");// End of the game
             System.out.println();
+        }
+    }
+    //UC5 - Each month would like to know the days won and lost and by how much.
+    void showWinLossCount(){
+
+        for(int i=0;i<30;i++){
+            System.out.println("Day: "+(i+1)+ " Total Win count: "+(winCountArr[i]));
+            System.out.println("Day: "+(i+1)+ " Total Loose count: "+(looseCountArr[i]));
         }
     }
     public static void main (String[]args){
@@ -77,6 +86,7 @@ public class Gambling_Simulator {
         int j = rand.nextInt(2);
         Gambling_Simulator gms = new Gambling_Simulator();
         gms.monthGame();
+        gms.showWinLossCount();
         System.out.println("Won days");
         for (int i: winCountArr ) {
             System.out.print(i + " ");
