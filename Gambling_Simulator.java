@@ -72,29 +72,37 @@ public class Gambling_Simulator {
     }
     //UC5 - Each month would like to know the days won and lost and by how much.
     void showWinLossCount(){
+        int count = 0;
+        int count1 = 0;
 
         for(int i=0;i<30;i++){
-            System.out.println("Day: "+(i+1)+ " Total Win count: "+(winCountArr[i]));
-            System.out.println("Day: "+(i+1)+ " Total Loose count: "+(looseCountArr[i]));
+            if(winCountArr[i]==50) {
+                System.out.println("Day: " + (i + 1) + " Total Win count: " + (++count) + " Won by " + winCountArr[i]);
+            }else
+                System.out.println("Day: "+(i+1)+ " Total Loose count: "+ (++count1) + " Lost by " + looseCountArr[i]);
+        }
+    }
+
+    //UC6 - Would also like to know my luckiest day when I won maximum and my unluckiest days when I lost maximum.
+
+    void luckydays() {
+        for (int i = 0; i < 30; i++) {
+            if (winCountArr[i]==50){
+                System.out.println("Day" + (i + 1 ) +" won " + winCountArr[i] +" is a Lucky day");
+            }
+            else
+                System.out.println("Day" + (i + 1 ) + " Lost " + looseCountArr[i] +" is a Unlucky day");
         }
     }
     public static void main (String[]args){
 
-        System.out.println("Welcome to Gambling Simulation Program.");
+        System.out.println("Welcome to Gambling Simulation Problem.");
 
         Random rand = new Random();
         int j = rand.nextInt(2);
         Gambling_Simulator gms = new Gambling_Simulator();
         gms.monthGame();
         gms.showWinLossCount();
-        System.out.println("Won days");
-        for (int i: winCountArr ) {
-            System.out.print(i + " ");
-        }
-        System.out.println("");
-        System.out.println("lost days");
-        for (int i: looseCountArr ) {
-            System.out.print(i + " ");
-        }
+        gms.luckydays();
     }
 }
