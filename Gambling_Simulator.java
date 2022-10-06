@@ -9,27 +9,48 @@ public class Gambling_Simulator {
     public static final int STAKE = 100;
     public static final int BET_VALUE = 1;
 
+    static int newStake = STAKE;
+
     // UC2 - As a Gambler make $1 bet so either win or loose $1
 
-    public static void winLoose(int r, int BET_VALUE){
+    public static void winLoose(int r){
 
-        if (r == BET_VALUE){
-            System.out.println("Gambler Wins!");
-        }
+        while (true) {
+            if (r == BET_VALUE) {
 
-        else{
-            System.out.println("Gambler Loose!");
+                System.out.println("Gambler Wins!");
+                newStake++;
+                System.out.println("New Amount Inhand: "+newStake);
+                //UC3 - As a Calculative Gambler if won or lost 50% of the stake, would resign for the day.
 
+                if (newStake == 150){
+                    System.out.println("Gambler resigns as he wins 50% more of his stake");
+                    return;
+                }
+            }
+
+            else {
+
+                System.out.println("Gambler Loose!");
+                newStake--;
+                System.out.println("New Amount Inhand: "+newStake);
+
+                //UC3 - As a Calculative Gambler if won or lost 50% of the stake, would resign for the day.
+
+                if (newStake == 50){
+                    System.out.println("Gambler resigns as he looses 50%  of his stake");
+                    return;
+                }
+            }
         }
     }
 
     public static void main(String[] args) {
 
-        System.out.println("Welcome to Gambling Simulation Program.");
+        System.out.println("Welcome to Gambling Simulation Problem.");
 
         Random rand = new Random();
         int r = rand.nextInt(2);
-        winLoose(r,BET_VALUE);
+        winLoose(r);
     }
-}
 }
